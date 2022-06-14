@@ -28,14 +28,14 @@ docker run -d --rm \
     quay.io/thanos/thanos:v0.21.0 \
     receive \
     --tsdb.path "/receive/data" \
-    --grpc-address 127.0.0.1:10907 \
-    --http-address 127.0.0.1:10909 \
+    --grpc-address 172.17.0.1:10907 \
+    --http-address 172.17.0.1:10909 \
     --label "receive_replica=\"0\"" \
     --label "receive_cluster=\"wayne-enterprises\"" \
-    --remote-write.address 127.0.0.1:10908
+    --remote-write.address 172.17.0.1:10908
 ```{{execute}}
 
-This starts Thanos Receive that listens on `http://127.0.0.1:10908/api/v1/receive` endpoint for Remote Write and on `127.0.0.1:10907` for Thanos StoreAPI.
+This starts Thanos Receive that listens on `http://172.17.0.1:10908/api/v1/receive` endpoint for Remote Write and on `172.17.0.1:10907` for Thanos StoreAPI.
 
 Next, let us run a `Thanos Query` instance connected to Thanos Receive:
 
@@ -46,7 +46,7 @@ docker run -d --rm \
 quay.io/thanos/thanos:v0.21.0 \
 query \
 --http-address "0.0.0.0:39090" \
---store "127.0.0.1:10907"
+--store "172.17.0.1:10907"
 ```{{execute}}
 
 Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here](https://[[HOST_SUBDOMAIN]]-39090-[[KATACODA_HOST]].environments.katacoda.com/stores) (try refreshing the Thanos UI if it does not show up straight away).

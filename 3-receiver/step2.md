@@ -52,14 +52,14 @@ docker run -d --rm \
     quay.io/thanos/thanos:v0.21.0 \
     receive \
     --tsdb.path "/receive/data" \
-    --grpc-address 127.0.0.1:10907 \
-    --http-address 127.0.0.1:10909 \
+    --grpc-address 172.17.0.1:10907 \
+    --http-address 172.17.0.1:10909 \
     --label "receive_replica=\"0\"" \
     --label "receive_cluster=\"wayne-enterprises\"" \
-    --remote-write.address 127.0.0.1:10908
+    --remote-write.address 172.17.0.1:10908
 ```{{execute}}
 
-This starts Thanos Receive that listens on `http://127.0.0.1:10908/api/v1/receive' endpoint for Remote Write and on `127.0.0.1:10907` for Thanos StoreAPI.
+This starts Thanos Receive that listens on `http://172.17.0.1:10908/api/v1/receive' endpoint for Remote Write and on `172.17.0.1:10907` for Thanos StoreAPI.
 
 Let's talk about some important parameters:
 * `--label` - `Thanos Receive` requires at least one label to be set. These are called 'external labels' and are used to uniquely identify this instance of `Thanos Receive`.
@@ -68,7 +68,7 @@ Let's talk about some important parameters:
 Let's verify that this is running correctly. Since `Thanos Receive` does not expose a UI, we can check it is up by retrieving its metrics page.
 
 ```
-curl http://127.0.0.1:10909/metrics
+curl http://172.17.0.1:10909/metrics
 ```{{execute}}
 
 ## Run Thanos Query
@@ -82,10 +82,10 @@ docker run -d --rm \
     quay.io/thanos/thanos:v0.21.0 \
     query \
     --http-address "0.0.0.0:39090" \
-    --store "127.0.0.1:10907"
+    --store "172.17.0.1:10907"
 ```{{execute}}
 
-`Thanos Receive` exposed its gRPC endpoint at `127.0.0.1:10907`, so we need to tell `Thanos Query` to use this endpoint with the `--store` flag.
+`Thanos Receive` exposed its gRPC endpoint at `172.17.0.1:10907`, so we need to tell `Thanos Query` to use this endpoint with the `--store` flag.
 
 Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here](https://[[HOST_SUBDOMAIN]]-39090-[[KATACODA_HOST]].environments.katacoda.com/stores).
 

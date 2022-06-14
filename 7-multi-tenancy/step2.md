@@ -16,9 +16,9 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:29090 \
     --grpc-address 0.0.0.0:29190 \
     --query.replica-label replica \
-    --store 127.0.0.1:19190 \
-    --store 127.0.0.1:19191 \
-    --store 127.0.0.1:19192 && echo "Started Thanos Querier with access to both Veggie's and Fruit's data"
+    --store 172.17.0.1:19190 \
+    --store 172.17.0.1:19191 \
+    --store 172.17.0.1:19192 && echo "Started Thanos Querier with access to both Veggie's and Fruit's data"
 ```{{execute}}
 
 Within short time we should be able to see "Tomato" view [when we open Querier UI](https://[[HOST_SUBDOMAIN]]-29090-[[KATACODA_HOST]].environments.katacoda.com/)
@@ -48,7 +48,7 @@ docker run -d --net=host --rm \
     --name prom-label-proxy \
     quay.io/prometheuscommunity/prom-label-proxy:v0.3.0 \
     -label tenant \
-    -upstream http://127.0.0.1:29090 \
+    -upstream http://172.17.0.1:29090 \
     -insecure-listen-address 0.0.0.0:39090 \
     -enable-label-apis && echo "Started prom-label-proxy"
 ```{{execute}}
@@ -70,12 +70,12 @@ Let's create Caddy config file:
 
 :39091  {
     rewrite * ?{query}&tenant=team-fruit
-    reverse_proxy 127.0.0.1:39090
+    reverse_proxy 172.17.0.1:39090
 }
 
 :39092 {
     rewrite * ?{query}&tenant=team-veggie
-    reverse_proxy 127.0.0.1:39090
+    reverse_proxy 172.17.0.1:39090
 }
 </pre>
 
@@ -100,7 +100,7 @@ Let's check if our read isolation works:
 
 Firstly for `Team Fruit`, let's make a query for some data:
 ```
-curl -g 'http://127.0.0.1:39091/api/v1/query?query=up'
+curl -g 'http://172.17.0.1:39091/api/v1/query?query=up'
 ```{{execute}}
 Inspecting the output we should only see metrics with `"tenant":"team-fruit"`.
 
@@ -108,7 +108,7 @@ Inspecting the output we should only see metrics with `"tenant":"team-fruit"`.
 
 Secondly for `Team Veggie`, let's make the same query to the other port:
 ```
-curl -g 'http://127.0.0.1:39092/api/v1/query?query=up'
+curl -g 'http://172.17.0.1:39092/api/v1/query?query=up'
 ```{{execute}}
  Inspecting the output we should only see metrics with `"tenant":"team-veggie"`.
 

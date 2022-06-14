@@ -32,9 +32,9 @@ docker run -d --net=host --rm \
     query \
     --http-address 0.0.0.0:29090 \
     --query.replica-label replica \
-    --store 127.0.0.1:19190 \
-    --store 127.0.0.1:19191 \
-    --store 127.0.0.1:19192 && echo "Started Thanos Querier"
+    --store 172.17.0.1:19190 \
+    --store 172.17.0.1:19191 \
+    --store 172.17.0.1:19192 && echo "Started Thanos Querier"
 ```{{execute}}
 
 ## Setup verification
@@ -58,9 +58,9 @@ You should see the single value representing the number of series scraped in bot
 If we query `prometheus_tsdb_head_series` we will see that we have complete info about all three Prometheus instances:
 
 ```
-prometheus_tsdb_head_series{cluster="eu1",instance="127.0.0.1:9090",job="prometheus"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9091",job="prometheus"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9092",job="prometheus"}
+prometheus_tsdb_head_series{cluster="eu1",instance="172.17.0.1:9090",job="prometheus"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9091",job="prometheus"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9092",job="prometheus"}
 ```
 
 ## Handling of Highly Available Prometheus
@@ -73,11 +73,11 @@ Try to query the same query as before: <a href="https://[[HOST_SUBDOMAIN]]-29090
 Now turn off deduplication (`deduplication` button on Querier UI) and hit `Execute` again. Now you should see 5 results:
 
 ```
-prometheus_tsdb_head_series{cluster="eu1",instance="127.0.0.1:9090",job="prometheus",replica="0"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9091",job="prometheus",replica="0"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9091",job="prometheus",replica="1"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9092",job="prometheus",replica="0"}
-prometheus_tsdb_head_series{cluster="us1",instance="127.0.0.1:9092",job="prometheus",replica="1"}
+prometheus_tsdb_head_series{cluster="eu1",instance="172.17.0.1:9090",job="prometheus",replica="0"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9091",job="prometheus",replica="0"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9091",job="prometheus",replica="1"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9092",job="prometheus",replica="0"}
+prometheus_tsdb_head_series{cluster="us1",instance="172.17.0.1:9092",job="prometheus",replica="1"}
 ```
 
 So how Thanos Querier knows how to deduplicate correctly?

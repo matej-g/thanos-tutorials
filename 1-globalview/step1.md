@@ -37,7 +37,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
 </pre>
 
 For the second cluster we set two replicas:
@@ -53,7 +53,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
 </pre>
 
 <pre class="file" data-filename="prometheus1_us1.yml" data-target="replace">
@@ -67,7 +67,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
 </pre>
 
 **NOTE** : Every Prometheus instance must have a globally unique set of identifying labels. These labels are important as they represent certain "stream" of data (e.g in the form of TSDB blocks). Within those exact external labels, the compactions and downsampling are performed, Querier filters its store APIs, further sharding option, deduplication, and potential multi-tenancy capabilities are available. Those are not easy to edit retroactively, so it's important to provide a compatible set of external labels as in order to for Thanos to aggregate data across all the available instances.

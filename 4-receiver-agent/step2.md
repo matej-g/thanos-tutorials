@@ -37,10 +37,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus-agent'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
 
 remote_write:
-- url: 'http://127.0.0.1:10908/api/v1/receive'
+- url: 'http://172.17.0.1:10908/api/v1/receive'
 </pre>
 
 Run the prometheus in agent mode:
@@ -78,10 +78,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus-agent'
     static_configs:
-      - targets: ['127.0.0.1:9091']
+      - targets: ['172.17.0.1:9091']
 
 remote_write:
-- url: 'http://127.0.0.1:10908/api/v1/receive'
+- url: 'http://172.17.0.1:10908/api/v1/receive'
 </pre>
 
 ```

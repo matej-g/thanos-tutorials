@@ -50,7 +50,7 @@ Click `Copy To Editor` for config to propagate the configs to the file `bucket_s
 type: S3
 config:
   bucket: "thanos"
-  endpoint: "127.0.0.1:9000"
+  endpoint: "172.17.0.1:9000"
   insecure: true
   signature_version2: true
   access_key: "minio"
@@ -86,7 +86,7 @@ docker run -d --net=host --rm \
     --shipper.upload-compacted \
     --http-address 0.0.0.0:19090 \
     --grpc-address 0.0.0.0:19190 \
-    --prometheus.url http://127.0.0.1:9090
+    --prometheus.url http://172.17.0.1:9090
 ```{{execute}}
 
 ## Verification

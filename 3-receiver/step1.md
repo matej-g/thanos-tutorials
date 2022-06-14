@@ -29,7 +29,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
 </pre>
 
 Run the prometheus instance:
@@ -73,7 +73,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091']
+      - targets: ['172.17.0.1:9091']
 </pre>
 
 ```

@@ -43,7 +43,7 @@ docker run -d --net=host --rm \
 
 In this step, we will see how we can query Thanos store data which has access to historical data from the `thanos` bucket, and play with this setup a bit.
 
-Currently querier does not know about store yet. Let's change it by adding Store Gateway gRPC address `--store 127.0.0.1:19191` to Querier:
+Currently querier does not know about store yet. Let's change it by adding Store Gateway gRPC address `--store 172.17.0.1:19191` to Querier:
 
 ```
 docker stop querier && \
@@ -53,8 +53,8 @@ docker run -d --net=host --rm \
    query \
    --http-address 0.0.0.0:9091 \
    --query.replica-label replica \
-   --store 127.0.0.1:19190 \
-   --store 127.0.0.1:19191
+   --store 172.17.0.1:19190 \
+   --store 172.17.0.1:19191
 ```{{execute}}
 
 Click on the Querier UI `Graph` page and try querying data for a year or two by inserting metrics `continuous_app_metric0` ([Query UI](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/graph?g0.range_input=1y&g0.max_source_resolution=0s&g0.expr=continuous_app_metric0&g0.tab=0)). Make sure `deduplication` is selected and you will be able to discover all the data fetched by Thanos store.
@@ -83,7 +83,7 @@ and click on `Enable Store Filtering`.
 
 This allows us to filter stores and helps in debugging from where we are querying the data exactly.
 
-Let's chose only `127.0.0.1:19191`, so store gateway. This query will only hit that store to retrieve data, so we are sure that store works.
+Let's chose only `172.17.0.1:19191`, so store gateway. This query will only hit that store to retrieve data, so we are sure that store works.
 
 ## Question Time? 🤔
 

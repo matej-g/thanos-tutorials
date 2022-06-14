@@ -37,7 +37,7 @@ cat <<EOF > ${CURR_DIR}/minio-bucket.yaml
 type: S3
 config:
   bucket: "thanos"
-  endpoint: "127.0.0.1:9000"
+  endpoint: "172.17.0.1:9000"
   insecure: true
   signature_version2: true
   access_key: "rawkode"
@@ -73,7 +73,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19091 \
     --grpc-address 0.0.0.0:19191 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://127.0.0.1:${PROM_EU1_0_PORT}"
+    --prometheus.url "http://172.17.0.1:${PROM_EU1_0_PORT}"
 ```{{execute}}
 
 * `cluster="eu1", replica="1"` sidecar:
@@ -93,7 +93,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19092 \
     --grpc-address 0.0.0.0:19192 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://127.0.0.1:${PROM_EU1_1_PORT}"
+    --prometheus.url "http://172.17.0.1:${PROM_EU1_1_PORT}"
 ```{{execute}}
 
 * `cluster="us1", replica="0"` sidecar:
@@ -113,7 +113,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19093 \
     --grpc-address 0.0.0.0:19193 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://127.0.0.1:${PROM_US1_0_PORT}"
+    --prometheus.url "http://172.17.0.1:${PROM_US1_0_PORT}"
 ```{{execute}}
 
 We can check whether the data is uploaded into `thanos` bucket by visiting [Minio](https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/minio/) (or `localhost:9000`) It will take a minute to synchronize all blocks. Note that sidecar by default uploads only "non compacted by Prometheus" blocks.
@@ -148,10 +148,10 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:9090 \
     --grpc-address 0.0.0.0:19190 \
     --query.replica-label replica \
-    --store 127.0.0.1:19191 \
-    --store 127.0.0.1:19192 \
-    --store 127.0.0.1:19193 \
-    --store 127.0.0.1:19194
+    --store 172.17.0.1:19191 \
+    --store 172.17.0.1:19192 \
+    --store 172.17.0.1:19193 \
+    --store 172.17.0.1:19194
 ```{{execute}}
 
 Visit https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com to see Thanos UI.

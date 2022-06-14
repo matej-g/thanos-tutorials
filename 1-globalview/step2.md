@@ -58,7 +58,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19090 \
     --grpc-address 0.0.0.0:19190 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9090 && echo "Started sidecar for Prometheus 0 EU1"
+    --prometheus.url http://172.17.0.1:9090 && echo "Started sidecar for Prometheus 0 EU1"
 ```{{execute}}
 
 ### Adding sidecars to each replica of Prometheus in "US1"
@@ -73,7 +73,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19091 \
     --grpc-address 0.0.0.0:19191 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9091 && echo "Started sidecar for Prometheus 0 US1"
+    --prometheus.url http://172.17.0.1:9091 && echo "Started sidecar for Prometheus 0 US1"
 ```{{execute}}
 
 ```
@@ -86,7 +86,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19092 \
     --grpc-address 0.0.0.0:19192 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9092 && echo "Started sidecar for Prometheus 1 US1"
+    --prometheus.url http://172.17.0.1:9092 && echo "Started sidecar for Prometheus 1 US1"
 ```{{execute}}
 
 ## Verification
@@ -108,10 +108,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
   - job_name: 'sidecar'
     static_configs:
-      - targets: ['127.0.0.1:19090']
+      - targets: ['172.17.0.1:19090']
 </pre>
 
 <pre class="file" data-filename="prometheus0_us1.yml" data-target="replace">
@@ -125,10 +125,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
   - job_name: 'sidecar'
     static_configs:
-      - targets: ['127.0.0.1:19091','127.0.0.1:19092']
+      - targets: ['172.17.0.1:19091','172.17.0.1:19092']
 </pre>
 
 <pre class="file" data-filename="prometheus1_us1.yml" data-target="replace">
@@ -142,10 +142,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
   - job_name: 'sidecar'
     static_configs:
-      - targets: ['127.0.0.1:19091','127.0.0.1:19092']
+      - targets: ['172.17.0.1:19091','172.17.0.1:19092']
 </pre>
 
 Now you should see new, updated configuration on each Prometheus. For example here in [Prometheus 0 EU1 /config](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/config).

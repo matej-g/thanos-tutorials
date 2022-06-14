@@ -39,7 +39,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
 </pre>
 
 <pre class="file" data-filename="prometheus1.yml" data-target="replace">
@@ -52,7 +52,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091']
+      - targets: ['172.17.0.1:9091']
 </pre>
 
 <pre class="file" data-filename="prometheus2.yml" data-target="replace">
@@ -65,7 +65,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9092']
+      - targets: ['172.17.0.1:9092']
 </pre>
 
 ### Deploy Prometheus
@@ -108,7 +108,7 @@ docker run -d --net=host --rm \
     --http-address=0.0.0.0:1909"${i}" \
     --grpc-address=0.0.0.0:1919"${i}" \
     --reloader.config-file=/etc/prometheus/prometheus.yml \
-    --prometheus.url=http://127.0.0.1:909"${i}" && echo "Started Thanos Sidecar for Prometheus ${i}!"
+    --prometheus.url=http://172.17.0.1:909"${i}" && echo "Started Thanos Sidecar for Prometheus ${i}!"
 done
 ```{{execute}}
 
@@ -134,9 +134,9 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:10912 \
     --grpc-address 0.0.0.0:10901 \
     --query.replica-label replica \
-    --store 127.0.0.1:19190 \
-    --store 127.0.0.1:19191 \
-    --store 127.0.0.1:19192 && echo "Started Thanos Querier!"
+    --store 172.17.0.1:19190 \
+    --store 172.17.0.1:19191 \
+    --store 172.17.0.1:19192 && echo "Started Thanos Querier!"
 ```{{execute}}
 
 ### Setup Verification

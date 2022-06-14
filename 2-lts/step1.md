@@ -53,20 +53,20 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
   - job_name: 'sidecar'
     static_configs:
-      - targets: ['127.0.0.1:19090']
+      - targets: ['172.17.0.1:19090']
   - job_name: 'minio'
     metrics_path: /minio/prometheus/metrics
     static_configs:
-      - targets: ['127.0.0.1:9000']
+      - targets: ['172.17.0.1:9000']
   - job_name: 'querier'
     static_configs:
-      - targets: ['127.0.0.1:9091']
+      - targets: ['172.17.0.1:9091']
   - job_name: 'store_gateway'
     static_configs:
-      - targets: ['127.0.0.1:19091']
+      - targets: ['172.17.0.1:19091']
 </pre>
 
 ## Starting Prometheus Instance
@@ -121,7 +121,7 @@ docker run -d --net=host --rm \
     sidecar \
     --http-address 0.0.0.0:19090 \
     --grpc-address 0.0.0.0:19190 \
-    --prometheus.url http://127.0.0.1:9090
+    --prometheus.url http://172.17.0.1:9090
 ```{{execute}}
 
 And Querier. As you remember [Thanos sidecar](https://thanos.io/tip/components/query.md/) exposes `StoreAPI`
@@ -134,7 +134,7 @@ docker run -d --net=host --rm \
     query \
     --http-address 0.0.0.0:9091 \
     --query.replica-label replica \
-    --store 127.0.0.1:19190
+    --store 172.17.0.1:19190
 ```{{execute}}
 
 ## Setup verification

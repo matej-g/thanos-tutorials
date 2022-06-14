@@ -25,7 +25,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['172.17.0.1:9090']
 </pre>
 
 For the **Team Veggie** we set second instance with two replicas (Veggies care for high availability - everyone should eat vegetables every day after all!):
@@ -41,7 +41,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-     - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+     - targets: ['172.17.0.1:9091','172.17.0.1:9092']
 </pre>
 
 <pre class="file" data-filename="prometheus1_veggie.yml" data-target="replace">
@@ -55,7 +55,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
+      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
 </pre>
 
 ### Prepare "persistent volumes"
@@ -93,7 +93,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19090 \
     --grpc-address 0.0.0.0:19190 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9090 && echo "Started sidecar for Fruit Prometheus"
+    --prometheus.url http://172.17.0.1:9090 && echo "Started sidecar for Fruit Prometheus"
 ```{{execute}}
 
 ### Same for Team Veggie, but with 2-replica Prometheus:
@@ -125,7 +125,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19091 \
     --grpc-address 0.0.0.0:19191 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9091 && echo "Started sidecar for Veggie Prometheus"
+    --prometheus.url http://172.17.0.1:9091 && echo "Started sidecar for Veggie Prometheus"
 ```{{execute}}
 
 Second:
@@ -157,7 +157,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19092 \
     --grpc-address 0.0.0.0:19192 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url http://127.0.0.1:9092 && echo "Started sidecar for Veggie Prometheus"
+    --prometheus.url http://172.17.0.1:9092 && echo "Started sidecar for Veggie Prometheus"
 ```{{execute}}
 
 ### Querier
@@ -175,7 +175,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:29091 \
     --grpc-address 0.0.0.0:29191 \
     --query.replica-label replica \
-    --store 127.0.0.1:19190 && echo "Started Thanos Fruit Querier"
+    --store 172.17.0.1:19190 && echo "Started Thanos Fruit Querier"
 ```{{execute}}
 
 Veggie:
@@ -188,8 +188,8 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:29092 \
     --grpc-address 0.0.0.0:29192 \
     --query.replica-label replica \
-    --store 127.0.0.1:19191 \
-    --store 127.0.0.1:19192 && echo "Started Thanos Veggie Querier"
+    --store 172.17.0.1:19191 \
+    --store 172.17.0.1:19192 && echo "Started Thanos Veggie Querier"
 ```{{execute}}
 
 ### Setup Verification

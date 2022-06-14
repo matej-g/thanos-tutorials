@@ -24,7 +24,7 @@ server {
      echo_exec @default;
  }
  location @default {
-     proxy_pass http://127.0.0.1:10912;
+     proxy_pass http://172.17.0.1:10912;
  }
 }
 </pre>
@@ -66,7 +66,7 @@ docker run -d --net=host --rm \
     query-frontend \
     --http-address 0.0.0.0:20902 \
     --query-frontend.compress-responses \
-    --query-frontend.downstream-url=http://127.0.0.1:10902 \
+    --query-frontend.downstream-url=http://172.17.0.1:10902 \
     --query-frontend.log-queries-longer-than=5s \
     --query-range.split-interval=1m \
     --query-range.response-cache-max-freshness=1m \
