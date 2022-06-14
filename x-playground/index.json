@@ -25,6 +25,6 @@
     "uieditorpath": "/root/editor"
   },
   "backend": {
-    "imageid": "docker-direct"
+    "imageid": "ubuntu"
   }
 }

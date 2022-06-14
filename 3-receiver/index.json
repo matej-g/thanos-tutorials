@@ -51,6 +51,6 @@
   ]
   },
   "backend": {
-    "imageid": "docker-direct"
+    "imageid": "ubuntu"
   }
 }

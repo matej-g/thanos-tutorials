@@ -14,6 +14,6 @@
     "uisettings": "yaml"
   },
   "backend": {
-    "imageid": "docker-direct"
+    "imageid": "ubuntu"
   }
 }
