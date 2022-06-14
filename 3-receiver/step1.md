@@ -44,11 +44,11 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yaml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9090 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9090}} \
     --web.enable-lifecycle
 ```{{execute}}
 
-Verify that `prometheus-batcave` is running by navigating to the [Batcave Prometheus UI](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com).
+Verify that `prometheus-batcave` is running by navigating to the [Batcave Prometheus UI]({{TRAFFIC_HOST1_9090}}).
 
 <details>
  <summary>Why do we enable the web lifecycle flag?</summary>

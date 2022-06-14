@@ -98,7 +98,7 @@ docker run -d --net=host --rm \
     --storage.tsdb.max-block-duration=2h \
     --storage.tsdb.min-block-duration=2h \
     --web.listen-address=:9090 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9090}} \
     --web.enable-lifecycle \
     --web.enable-admin-api
 ```{{execute}}
@@ -107,7 +107,7 @@ docker run -d --net=host --rm \
 
 Once started you should be able to reach the Prometheus instance here and query.. 1 year of data!
 
-* [Prometheus-0 EU1](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/graph?g0.range_input=1y&g0.expr=continuous_app_metric0&g0.tab=0)
+* [Prometheus-0 EU1]({{TRAFFIC_HOST1_9090}}/graph?g0.range_input=1y&g0.expr=continuous_app_metric0&g0.tab=0)
 
 ## Thanos Sidecar & Querier
 

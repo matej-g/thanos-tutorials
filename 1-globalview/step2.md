@@ -148,10 +148,10 @@ scrape_configs:
       - targets: ['172.17.0.1:19091','172.17.0.1:19092']
 </pre>
 
-Now you should see new, updated configuration on each Prometheus. For example here in [Prometheus 0 EU1 /config](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/config).
-In the same time [`up`](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/graph?g0.expr=up&g0.tab=1) should show `job=sidecar` metrics.
+Now you should see new, updated configuration on each Prometheus. For example here in [Prometheus 0 EU1 /config]({{TRAFFIC_HOST1_9090}}/config).
+In the same time [`up`]({{TRAFFIC_HOST1_9090}}/graph?g0.expr=up&g0.tab=1) should show `job=sidecar` metrics.
 
-Since now Prometheus has access to sidecar metrics we can query for [`thanos_sidecar_prometheus_up`](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/graph?g0.expr=thanos_sidecar_prometheus_up&g0.tab=1)
+Since now Prometheus has access to sidecar metrics we can query for [`thanos_sidecar_prometheus_up`]({{TRAFFIC_HOST1_9090}}/graph?g0.expr=thanos_sidecar_prometheus_up&g0.tab=1)
 to check if sidecar has access to Prometheus.
 
 ## Next

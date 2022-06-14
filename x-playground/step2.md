@@ -154,7 +154,7 @@ docker run -d --net=host --rm \
     --store 172.17.0.1:19194
 ```{{execute}}
 
-Visit https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com to see Thanos UI.
+Visit {{TRAFFIC_HOST1_9090}} to see Thanos UI.
 
 ### Long term maintenance, retention, dedup and downsampling:
 
@@ -174,7 +174,7 @@ Visit https://[[HOST_SUBDOMAIN]]-19095-[[KATACODA_HOST]].environments.katacoda.c
 
 ### Data should be immediately downsampled as well for smooth experience!
 
-Visit https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com to see Thanos UI and query for 1 year.
+Visit {{TRAFFIC_HOST1_9090}} to see Thanos UI and query for 1 year.
 
 Check 5m downsampling vs raw data.
 

@@ -101,7 +101,7 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9090 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9090}} \
     --web.enable-lifecycle \
     --web.enable-admin-api && echo "Prometheus EU1 started!"
 ```{{execute}}
@@ -146,7 +146,7 @@ docker run -d --net=host --rm \
 
 Once started you should be able to reach all of those Prometheus instances:
 
-* [Prometheus-0 EU1](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/)
+* [Prometheus-0 EU1]({{TRAFFIC_HOST1_9090}}/)
 * [Prometheus-1 US1](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/)
 * [Prometheus-2 US1](https://[[HOST_SUBDOMAIN]]-9092-[[KATACODA_HOST]].environments.katacoda.com/)
 

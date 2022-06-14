@@ -79,7 +79,7 @@ docker run -d --net=host --rm \
 
 Once started you should be able to reach the Querier, Query Frontend and Prometheus.
 
-* [Prometheus](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/)
+* [Prometheus]({{TRAFFIC_HOST1_9090}}/)
 * [Querier](https://[[HOST_SUBDOMAIN]]-10902-[[KATACODA_HOST]].environments.katacoda.com/)
 * [Query Frontend](https://[[HOST_SUBDOMAIN]]-20902-[[KATACODA_HOST]].environments.katacoda.com/)
 

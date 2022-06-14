@@ -78,7 +78,7 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9090 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9090}} \
     --web.enable-lifecycle \
     --web.enable-admin-api && echo "Prometheus for Fruit Team started!"
 ```{{execute}}

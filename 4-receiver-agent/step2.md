@@ -60,7 +60,7 @@ quay.io/prometheus/prometheus:v2.32.0-beta.0 \
 
 This runs Prometheus Agent, which will scrape itself and forward all to Thanos Receive. It also exposes UI with pages that relate to scraping, service discovery, configuration and build information.
 
-Verify that `prom-agent-batmobile` is running by navigating to the [Batmobile Prometheus Agent UI](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/targets).
+Verify that `prom-agent-batmobile` is running by navigating to the [Batmobile Prometheus Agent UI]({{TRAFFIC_HOST1_9090}}/targets).
 
 You should see one target: Prometheus Agent on `batmobile` itself.
 

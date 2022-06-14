@@ -233,4 +233,4 @@ docker run -d --net=host --rm \
     --store 172.17.0.1:19193
 ```{{execute}}
 
-Visit https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com to see Thanos UI.
+Visit {{TRAFFIC_HOST1_9090}} to see Thanos UI.

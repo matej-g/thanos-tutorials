@@ -86,7 +86,7 @@ If we would look again into Querier configuration we can see that we also set `q
 This is exactly the label Querier will try to deduplicate by for HA groups. This means that any metric with exactly
 the same labels *except replica label* will be assumed as the metric from the same HA group, and deduplicated accordingly.
 
-If we would open `prometheus1_us1.yml` config file in the editor or if you go to Prometheus 1 US1 [/config](https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/config).
+If we would open `prometheus1_us1.yml` config file in the editor or if you go to Prometheus 1 US1 [/config]({{TRAFFIC_HOST1_9090}}/config).
 you should see our external labels in `external_labels` YAML option:
 
 ```yaml
