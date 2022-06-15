@@ -49,7 +49,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
+      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
 EOF
 ```{{execute}}
 
@@ -67,7 +67,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['172.17.0.1:9091','172.17.0.1:9092']
+      - targets: ['127.0.0.1:9091','127.0.0.1:9092']
 EOF
 ```{{execute}}
 
@@ -85,7 +85,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['172.17.0.1:9093']
+      - targets: ['127.0.0.1:9093']
 EOF
 ```{{execute}}
 
@@ -95,9 +95,9 @@ EOF
 PROM_EU1_0_PORT=9091 && \
 PROM_EU1_1_PORT=9092 && \
 PROM_US1_0_PORT=9093
-PROM_EU1_0_EXT_ADDRESS=https://[[HOST_SUBDOMAIN]]-${PROM_EU1_0_PORT}-[[KATACODA_HOST]].environments.katacoda.com && \
-PROM_EU1_1_EXT_ADDRESS=https://[[HOST_SUBDOMAIN]]-${PROM_EU1_1_PORT}-[[KATACODA_HOST]].environments.katacoda.com && \
-PROM_US1_0_EXT_ADDRESS=https://[[HOST_SUBDOMAIN]]-${PROM_US1_0_PORT}-[[KATACODA_HOST]].environments.katacoda.com
+PROM_EU1_0_EXT_ADDRESS={{TRAFFIC_HOST1_${PROM_EU1_0_PORT}}} && \
+PROM_EU1_1_EXT_ADDRESS={{TRAFFIC_HOST1_${PROM_EU1_1_PORT}}} && \
+PROM_US1_0_EXT_ADDRESS={{TRAFFIC_HOST1_${PROM_US1_0_PORT}}}
 ```{{execute}}
 
 ### Deploying Prometheus-es/Prometheus/Prometheus instances
@@ -185,7 +185,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19091 \
     --grpc-address 0.0.0.0:19191 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://172.17.0.1:${PROM_EU1_0_PORT}"
+    --prometheus.url "http://127.0.0.1:${PROM_EU1_0_PORT}"
 ```{{execute}}
 
 * `cluster="eu1", replica="1"` sidecar:
@@ -200,7 +200,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19092 \
     --grpc-address 0.0.0.0:19192 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://172.17.0.1:${PROM_EU1_1_PORT}"
+    --prometheus.url "http://127.0.0.1:${PROM_EU1_1_PORT}"
 ```{{execute}}
 
 * `cluster="us1", replica="0"` sidecar:
@@ -215,7 +215,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19093 \
     --grpc-address 0.0.0.0:19193 \
     --reloader.config-file /etc/prometheus/prometheus.yml \
-    --prometheus.url "http://172.17.0.1:${PROM_US1_0_PORT}"
+    --prometheus.url "http://127.0.0.1:${PROM_US1_0_PORT}"
 ```{{execute}}
 
 ### Step2: Global View + HA: Querier
@@ -228,9 +228,9 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:9090 \
     --grpc-address 0.0.0.0:19190 \
     --query.replica-label replica \
-    --store 172.17.0.1:19191 \
-    --store 172.17.0.1:19192 \
-    --store 172.17.0.1:19193
+    --store 127.0.0.1:19191 \
+    --store 127.0.0.1:19192 \
+    --store 127.0.0.1:19193
 ```{{execute}}
 
 Visit {{TRAFFIC_HOST1_9090}} to see Thanos UI.

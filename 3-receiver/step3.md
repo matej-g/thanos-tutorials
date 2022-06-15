@@ -49,6 +49,6 @@ curl -X POST http://172.17.0.1:9091/-/reload
 
 Verify this has taken affect by checking the `/config` page on our Prometheus instances:
 * `prometheus-batcave` [config page]({{TRAFFIC_HOST1_9090}}/config)
-* `prometheus-batcomputer` [config page](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/config)
+* `prometheus-batcomputer` [config page]({{TRAFFIC_HOST1_9091}}/config)
 
 In both cases you should see the `remote_write` options in the configuration.

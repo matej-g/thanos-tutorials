@@ -80,11 +80,11 @@ docker run -d --net=host --rm \
 Once started you should be able to reach the Querier, Query Frontend and Prometheus.
 
 * [Prometheus]({{TRAFFIC_HOST1_9090}}/)
-* [Querier](https://[[HOST_SUBDOMAIN]]-10902-[[KATACODA_HOST]].environments.katacoda.com/)
-* [Query Frontend](https://[[HOST_SUBDOMAIN]]-20902-[[KATACODA_HOST]].environments.katacoda.com/)
+* [Querier]({{TRAFFIC_HOST1_10902}}/)
+* [Query Frontend]({{TRAFFIC_HOST1_20902}}/)
 
-Now, go and execute a query on [Querier](https://[[HOST_SUBDOMAIN]]-10902-[[KATACODA_HOST]].environments.katacoda.com/) and observe the latency.
-And then go and execute the same query on [Query Frontend](https://[[HOST_SUBDOMAIN]]-20902-[[KATACODA_HOST]].environments.katacoda.com/).
+Now, go and execute a query on [Querier]({{TRAFFIC_HOST1_10902}}/) and observe the latency.
+And then go and execute the same query on [Query Frontend]({{TRAFFIC_HOST1_20902}}/).
 For the first execution you will observe that the query execution takes longer than the query on Querier.
 That's because we have an nginx proxy between Query Frontend and Querier.
 

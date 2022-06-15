@@ -49,7 +49,7 @@ query \
 --store "172.17.0.1:10907"
 ```{{execute}}
 
-Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here](https://[[HOST_SUBDOMAIN]]-39090-[[KATACODA_HOST]].environments.katacoda.com/stores) (try refreshing the Thanos UI if it does not show up straight away).
+Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here]({{TRAFFIC_HOST1_39090}}/stores) (try refreshing the Thanos UI if it does not show up straight away).
 
 We should see Receive store on this page and, as expected, no metric data since we did not connect any Remote Write sender yet.
 

@@ -14,7 +14,7 @@ Stop and think how you could do this before opening the answer below 👇
 
 Let's make sure that we can query data from each of our Prometheus instances from our `Thanos Query` instance.
 
-Navigate to the [Thanos Query UI](https://[[HOST_SUBDOMAIN]]-39090-[[KATACODA_HOST]].environments.katacoda.com), and query for a metric like `up` - inspect the output and you should see `batcave` and `batcomputer` in the `cluster` label.
+Navigate to the [Thanos Query UI]({{TRAFFIC_HOST1_39090}}), and query for a metric like `up` - inspect the output and you should see `batcave` and `batcomputer` in the `cluster` label.
 
 ![alt-text](./assets/receive-cluster-result.png)
 

@@ -140,10 +140,10 @@ docker run -d --net=host --rm \
 ## Setup verification
 
 Similar to previous course let's check if the Querier works as intended. Let's look on
-[Querier UI `Store` page](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/stores).
+[Querier UI `Store` page]({{TRAFFIC_HOST1_9091}}/stores).
 
 This should list the sidecar, including the external labels.
 
-On graph you should also see our 5 series for 1y time, thanks to Prometheus and sidecar StoreAPI: [Graph](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/graph?g0.range_input=1y&g0.max_source_resolution=0s&g0.expr=continuous_app_metric0&g0.tab=0).
+On graph you should also see our 5 series for 1y time, thanks to Prometheus and sidecar StoreAPI: [Graph]({{TRAFFIC_HOST1_9091}}/graph?g0.range_input=1y&g0.max_source_resolution=0s&g0.expr=continuous_app_metric0&g0.tab=0).
 
 Click `Continue` to see how we can move this data to much cheaper and easier to operate object storage.

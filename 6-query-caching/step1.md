@@ -81,7 +81,7 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:909"${i}" \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-909"${i}"-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_909"${i}"}} \
     --web.enable-lifecycle \
     --web.enable-admin-api && echo "Prometheus ${i} started!"
 done
@@ -144,4 +144,4 @@ docker run -d --net=host --rm \
 Once started you should be able to reach the Querier and Prometheus.
 
 * [Prometheus]({{TRAFFIC_HOST1_9090}}/)
-* [Querier](https://[[HOST_SUBDOMAIN]]-10912-[[KATACODA_HOST]].environments.katacoda.com/)
+* [Querier]({{TRAFFIC_HOST1_10912}}/)

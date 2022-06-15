@@ -33,7 +33,7 @@ mkdir /root/minio/thanos
 
 ## Verification
 
-To check if the Minio is working as intended, let's [open Minio server UI](https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/minio/)
+To check if the Minio is working as intended, let's [open Minio server UI]({{TRAFFIC_HOST1_9000}}/minio/)
 
 Enter the credentials as mentioned below:
 
@@ -91,7 +91,7 @@ docker run -d --net=host --rm \
 
 ## Verification
 
-We can check whether the data is uploaded into `thanos` bucket by visitng [Minio](https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/minio/).
+We can check whether the data is uploaded into `thanos` bucket by visitng [Minio]({{TRAFFIC_HOST1_9000}}/minio/).
 It will take couple of seconds to synchronize all blocks.
 
 Once all blocks appear in the minio `thanos` bucket, we are sure our data is backed up. Awesome! 💪

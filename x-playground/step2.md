@@ -23,7 +23,7 @@ mkdir ${CURR_DIR}/minio/thanos
 ```{{execute}}
 
 
-To check if the Minio is working as intended, let's [open Minio server UI](https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/minio/)
+To check if the Minio is working as intended, let's [open Minio server UI]({{TRAFFIC_HOST1_9000}}/minio/)
 
 Enter the credentials as mentioned below:
 
@@ -116,7 +116,7 @@ docker run -d --net=host --rm \
     --prometheus.url "http://172.17.0.1:${PROM_US1_0_PORT}"
 ```{{execute}}
 
-We can check whether the data is uploaded into `thanos` bucket by visiting [Minio](https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/minio/) (or `localhost:9000`) It will take a minute to synchronize all blocks. Note that sidecar by default uploads only "non compacted by Prometheus" blocks.
+We can check whether the data is uploaded into `thanos` bucket by visiting [Minio]({{TRAFFIC_HOST1_9000}}/minio/) (or `localhost:9000`) It will take a minute to synchronize all blocks. Note that sidecar by default uploads only "non compacted by Prometheus" blocks.
 
 See [this](https://thanos.io/tip/components/sidecar.md/#upload-compacted-blocks) to read more about uploading old data already touched by Prometheus.
 
@@ -170,7 +170,7 @@ docker run -d --net=host --rm \
     --http-address 0.0.0.0:19095
 ```{{execute}}
 
-Visit https://[[HOST_SUBDOMAIN]]-19095-[[KATACODA_HOST]].environments.katacoda.com/new/loaded to see Compactor Web UI.
+Visit {{TRAFFIC_HOST1_19095}}/new/loaded to see Compactor Web UI.
 
 ### Data should be immediately downsampled as well for smooth experience!
 

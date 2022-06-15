@@ -86,10 +86,10 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yaml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9091 \
-    --web.external-url=https://2886795291-9091-elsy05.environments.katacoda.com \
+    --web.external-url=https://2886795291-9091-elsy05 \
     --web.enable-lifecycle
 ```{{execute}}
 
-Verify that `prometheus-batcomputer` is running by navigating to the [Batcomputer Prometheus UI](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com).
+Verify that `prometheus-batcomputer` is running by navigating to the [Batcomputer Prometheus UI]({{TRAFFIC_HOST1_9091}}).
 
 With these Prometheus instances configured and running, we can now start to architect our global view of all of `Wayne Enterprises`.

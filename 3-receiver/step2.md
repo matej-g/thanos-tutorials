@@ -87,7 +87,7 @@ docker run -d --rm \
 
 `Thanos Receive` exposed its gRPC endpoint at `172.17.0.1:10907`, so we need to tell `Thanos Query` to use this endpoint with the `--store` flag.
 
-Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here](https://[[HOST_SUBDOMAIN]]-39090-[[KATACODA_HOST]].environments.katacoda.com/stores).
+Verify that `Thanos Query` is working and configured correctly by looking at the 'stores' tab [here]({{TRAFFIC_HOST1_39090}}/stores).
 
 Now we are done right? Try querying for some data...
 

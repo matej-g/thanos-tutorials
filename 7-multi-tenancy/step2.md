@@ -21,7 +21,7 @@ docker run -d --net=host --rm \
     --store 172.17.0.1:19192 && echo "Started Thanos Querier with access to both Veggie's and Fruit's data"
 ```{{execute}}
 
-Within short time we should be able to see "Tomato" view [when we open Querier UI](https://[[HOST_SUBDOMAIN]]-29090-[[KATACODA_HOST]].environments.katacoda.com/)
+Within short time we should be able to see "Tomato" view [when we open Querier UI]({{TRAFFIC_HOST1_29090}}/)
 
 ## Tenant Query Isolation
 

@@ -32,12 +32,12 @@
     "finish": {
       "text": "finish.md",
       "credits": "test"
+    },
+    "assets": {
+      "host01": [
+        {"file": "*", "target": "/root/editor"}
+      ]
     }
-  },
-  "assets": {
-    "host01": [
-      {"file": "*", "target": "/root/editor"}
-    ]
   },
   "environment": {
     "uilayout": "editor-terminal",

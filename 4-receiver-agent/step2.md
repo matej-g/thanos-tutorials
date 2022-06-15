@@ -97,7 +97,7 @@ quay.io/prometheus/prometheus:v2.32.0-beta.0 \
 --web.listen-address=:9091
 ```{{execute}}
 
-Verify that `prom-agent-batcopter` is running by navigating to the [Batcopter Prometheus Agent UI](https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com/targets).
+Verify that `prom-agent-batcopter` is running by navigating to the [Batcopter Prometheus Agent UI]({{TRAFFIC_HOST1_9091}}/targets).
 
 You should see one target: Prometheus Agent on `batcopter` itself.
 

@@ -110,7 +110,7 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9091 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9091-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9091}} \
     --web.enable-lifecycle \
     --web.enable-admin-api && echo "Prometheus for Veggie Team started!"
 ```{{execute}}
@@ -140,7 +140,7 @@ docker run -d --net=host --rm \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
     --web.listen-address=:9092 \
-    --web.external-url=https://[[HOST_SUBDOMAIN]]-9092-[[KATACODA_HOST]].environments.katacoda.com \
+    --web.external-url={{TRAFFIC_HOST1_9092}} \
     --web.enable-lifecycle \
     --web.enable-admin-api && echo "Prometheus for Veggie Team started!"
 ```{{execute}}
@@ -203,8 +203,8 @@ each of tenants.
 
 Once started you should be able to reach both Queriers - each exposing either Fruit's or Veggies's data:
 
-* [Fruit Query](https://[[HOST_SUBDOMAIN]]-29091-[[KATACODA_HOST]].environments.katacoda.com/)
-* [Veggies Query](https://[[HOST_SUBDOMAIN]]-29092-[[KATACODA_HOST]].environments.katacoda.com/)
+* [Fruit Query]({{TRAFFIC_HOST1_29091}}/)
+* [Veggies Query]({{TRAFFIC_HOST1_29092}}/)
 
 ## Problem statement 1: Tomato problem.
 
